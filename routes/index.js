@@ -5,14 +5,14 @@ var quizController = require('../controllers/quiz_controller');
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  res.render('index', { title: 'Quiz' });
+  res.render('index', { title: 'Quiz', errors: [] });
 });
 
 // Autoload de comandos con :quizId
 router.param('quizId', quizController.load);
 
 router.get('/author', function(req, res) {
-  res.render('author', { author: 'Cristóbal López Ramos' });
+  res.render('author', { author: 'Cristóbal López Ramos', errors: [] });
 });
 
 // Definición de rutas de /quizes
