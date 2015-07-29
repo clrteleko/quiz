@@ -16,6 +16,10 @@ module.exports = function(sequelize, DataTypes){
                  notIn: {args: [['Pregunta','Respuesta']],
                          msg: "-> Falta Respuesta"}
                 }
+     },
+     categoria: {
+      type: DataTypes.STRING,
+      validate: {notEmpty: {msg: "-> Falta Categoria"}}
      }
     });
 }
