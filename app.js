@@ -38,6 +38,21 @@ app.use(function(req, res, next){
   next();
 });
 
+// Auto-logout
+app.use(function(req, res, next){
+  if(req.session.user){
+    var momentoActual = (new Date()).getTime();
+    if(momentoActual>req.session.expiration){
+      console.log("Session timeout expired...");
+      delete req.session.user;
+      res.redirect(req.session.redir.toString());
+    }else{
+      req.session.expiration = momentoActual + 120000;
+    }
+  }
+  next();
+});
+
 app.use('/', routes);
 
 // catch 404 and forward to error handler
